@@ -1,0 +1,32 @@
+<div *ngIf="showLoadder" class="fsLoader">
+  <img src="assets/img/ring.gif"/>
+</div>
+<h3>Add something tasty</h3>
+<div *ngIf='cup.cupProperties.adds.length' class="choose-panel">
+  <h4>Your current adds:</h4>
+  <div class="adds-list">
+    <span *ngFor='let component of cup.cupProperties.adds' class="add-component">
+      <button (click)='deleteComponent(component)' class="delete-btn"></button>
+      {{component.name}}
+    </span>
+  </div>
+
+  <button (click)='confirmAdds()' class="btn">Next step</button>
+</div>
+<div class="filter-buttons">
+  <button *ngFor="let item of servedBaseList.filterList"
+          [ngClass]="{'filter-active':item.state}"
+          (click)="filterBy(item)">
+          {{item.text}}
+  </button>
+</div>
+<a (click)="addIngridient(component)" *ngFor='let component of addsIngridientsList' class="component-item col-xs-2">
+  <span *ngIf='component.checkState' class="checked-item"></span>
+  <span class="info adds-info">
+    {{countIngredientPrice(component)}} UAH
+    <hr>
+    {{component.kkal}} kcal
+  </span>
+  <img src={{component.img}} alt="">
+  <h5>{{component.name}}</h5>
+</a>

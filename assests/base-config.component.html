@@ -1,0 +1,23 @@
+<div *ngIf="showLoadder" class="fsLoader">
+  <img src="assets/img/ring.gif"/>
+</div>
+<h3>Select base for your coffee</h3>
+<div *ngIf='cup.cupProperties.base' class="choose-panel">
+  <h4>Your current base is: <span class="current-base">{{cup.cupProperties.base.name}}</span></h4>
+  <button class="btn" (click)='confirmBase()'>Next step</button>
+</div>
+<div class="container base-list">
+  <div class="row">
+    <a (click)="chooseBase(component)" *ngFor='let component of baseIngridientsList' class="component-item col-xs-3">
+      <span *ngIf='component.checkState' class="checked-item"></span>
+      <span class="info">
+        {{countIngredientPrice(component)}} UAH
+        <hr>
+        {{component.kkal}} kcal
+      </span>
+
+      <img src={{component.img}} alt="">
+      <h5>{{component.name}}</h5>
+    </a>
+  </div>
+</div>
